@@ -12,6 +12,7 @@
   "dependencies": {
     "asposepdfnodejs": "^24.3.1",
     "express": "^4.19.2",
+    "nodemon": "^3.1.0",
     "pdf2table": "^0.0.2"
   }
 }

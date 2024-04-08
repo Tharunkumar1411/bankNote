@@ -2,12 +2,12 @@ var pdf2table = require('pdf2table');
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const { processTransactions } = require('./Banks/IndianBank');
+const { processTransactions } = require('./Controller/bankScrapers/IndianBank');
+const decryptPDF = require('./middleware/decryptPDF');
 
 app.get('/', async(req, res) => {
-
-
-    fs.readFile('./ResultDecrypt.pdf', function (err, buffer) {
+    await decryptPDF()
+    fs.readFile('./assets/ResultDecrypt.pdf', function (err, buffer) {
         if (err) {
             console.error(err);
             return res.status(500).send('Error reading PDF file');
