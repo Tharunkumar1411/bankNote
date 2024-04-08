@@ -20,7 +20,6 @@ app.get('/', async(req, res) => {
             }
 
             const transactions = processTransactions(rows);
-            // console.log(transactions);
             res.json(transactions);
         });
     });
