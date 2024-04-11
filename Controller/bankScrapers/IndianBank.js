@@ -30,7 +30,13 @@ function processTransactions(rows) {
             if (categories[category]) {
               categories[category] += amount;
             } else {
-              categories[category] = amount;
+              console.log("chjeci:", category)
+              if(category.includes('rent')){
+                let splitAmount = amount / 3;
+                categories[category] = splitAmount;
+              }else{
+                categories[category] = amount;
+              }
             }
           }
         });
