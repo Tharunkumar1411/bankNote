@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<main>
+  <div class="jumbotron">
+    <h1>Expenses</h1>
+    <ul>
+        <% for (let i = 0; i < tnxDetails.length; i++) { %>
+            <% const entry = tnxDetails[i]; %>
+            <% const category = Object.keys(entry)[0]; %>
+            <% const amount = entry[category]; %>
+            <li><%= category %>: <%= amount %></li>
+        <% } %>
+    </ul>
+
+</main>
+
+</body>
+</html>

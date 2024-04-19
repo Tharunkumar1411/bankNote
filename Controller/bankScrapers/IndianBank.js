@@ -58,13 +58,16 @@ function processTransactions(rows) {
       // Print the analysis
       console.log("Expense Analysis:");
       console.log("-----------------");
+      const categoryValues = []
       for (const category in categorizedExpenses) {
         console.log(`${category}: ${categorizedExpenses[category]}`);
-      }
+        categoryValues.push({ [category]: categorizedExpenses[category] });
+    }
+    
       console.log("-----------------");
       console.log(`Total Expenses: ${totalExpenses}`);
       
-    return transactions;
+    return categoryValues;
 }
 
 module.exports = {processTransactions}

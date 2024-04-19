@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <div class="jumbotron">
+
+    <h2>Upload PDF File</h2>
+    <form action="/expense" method="post" enctype="multipart/form-data">
+        <input type="file" name="pdfFile" accept="application/pdf" required>
+        <button type="submit">Done</button>
+    </form>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
