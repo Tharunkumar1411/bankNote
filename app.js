@@ -5,13 +5,6 @@ const fs = require('fs');
 const { processTransactions } = require('./Controller/bankScrapers/IndianBank');
 const decryptPDF = require('./middleware/decryptPDF');
 const multer  = require('multer');
-const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
-const statusMonitor = require('express-status-monitor')();
-
-app.set('view engine', 'ejs');
-
-app.use(statusMonitor);
-app.get('/status', ensureLoggedIn, statusMonitor.pageRoute)
   
 // about page
 app.get('/about', function(req, res) {
