@@ -12,15 +12,23 @@
 <main>
   <div class="jumbotron">
 
-    <h2>Upload PDF File</h2>
+    <h3>Upload Bank PDF statement</h3>
     <form action="/expense" method="post" enctype="multipart/form-data">
         <input type="file" name="pdfFile" accept="application/pdf" required>
-        <button type="submit">Done</button>
+        <button type="submit">Upload</button>
     </form>
+
+    <div style="margin-top: 2rem;">
+      <h6> Tips for better usage</h6>
+
+      <ul>
+        <li>while transacting enter reason of the each transaction on payment apps.</li>
+        <li>Stick with some group of reasons to track your expense easily. (eg., food, game, grocery)</li>
+      </ul>
+    </div>
 </main>
 
 <footer>
-  <%- include('../partials/footer'); %>
 </footer>
 
 </body>
