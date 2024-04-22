@@ -5,8 +5,13 @@ const fs = require('fs');
 const { processTransactions } = require('./Controller/bankScrapers/IndianBank');
 const decryptPDF = require('./middleware/decryptPDF');
 const multer  = require('multer');
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
+const statusMonitor = require('express-status-monitor')();
 
 app.set('view engine', 'ejs');
+
+app.use(statusMonitor);
+app.get('/status', ensureLoggedIn, statusMonitor.pageRoute)
   
 // about page
 app.get('/about', function(req, res) {
@@ -26,8 +31,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post('/expense', upload.single('pdfFile'), async(req, res) => {
-    await decryptPDF()
-    fs.readFile('./assets/ResultDecrypt.pdf', function (err, buffer) {
+    // await decryptPDF()
+    fs.readFile('./assets/statementPDF/IndianBook.pdf', function (err, buffer) {
         if (err) {
             console.error(err);
             return res.status(500).send('Error reading PDF file');
@@ -53,6 +58,6 @@ app.get('/', (req, res) => {
     res.render(`${__dirname}/views/pages/index.ejs`,)
 })
 
-app.listen(8080, () => {
+app.listen('8080', () => {
     console.log(`Example app listening on port 8080`);
 });
