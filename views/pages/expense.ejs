@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <%- include('../partials/head'); %>
+  <!-- Include Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="container">
 
@@ -20,8 +22,45 @@
             <li><%= category %>: <%= amount %></li>
         <% } %>
     </ul>
-
+    <!-- Canvas element for Chart.js -->
+    <canvas id="expensesChart" width="400" height="150"></canvas>
+  </div>
 </main>
+
+<script>
+  // Extract categories and amounts from tnxDetails
+  const categories = [];
+  const amounts = [];
+  <% tnxDetails.forEach(function(entry) { %>
+    <% const category = Object.keys(entry)[0]; %>
+    <% const amount = entry[category]; %>
+    categories.push('<%= category %>');
+    amounts.push(<%= amount %>);
+  <% }); %>
+
+  // Create a chart
+  const ctx = document.getElementById('expensesChart').getContext('2d');
+  const expensesChart = new Chart(ctx, {
+    type: 'bar', // Change this to 'line', 'pie', etc. based on your preference
+    data: {
+      labels: categories,
+      datasets: [{
+        label: 'Expenses',
+        data: amounts,
+        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
